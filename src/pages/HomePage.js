@@ -38,14 +38,14 @@ const HomePage = () => {
   };
 
   const handleCreate = async (event) => {
-    event.preventDefault(); // Предотвращаем перезагрузку страницы при сабмите формы
+    event.preventDefault(); // Prevent default form submit behavior
   
     try {
       const requestBody = {
         ...formData,
-        expectations: formData.expectations.split(',').map((item) => item.trim()), // Убираем лишние пробелы
-        tasks: formData.tasks.split(',').map((item) => item.trim()), // Убираем лишние пробелы
-        offers: formData.offers.split(',').map((item) => item.trim()), // Убираем лишние пробелы
+        expectations: formData.expectations.split(',').map((item) => item.trim()), // Trim whitespace
+        tasks: formData.tasks.split(',').map((item) => item.trim()), // Trim whitespace
+        offers: formData.offers.split(',').map((item) => item.trim()), // Trim whitespace
         salary: parseInt(formData.salary, 10),
         vacancyId: parseInt(formData.vacancyId, 10),
       };
@@ -53,9 +53,9 @@ const HomePage = () => {
       const response = await axios.post('http://localhost:5000/vacancies-info', requestBody);
       alert('Vacancy created successfully!');
   
-      // Обновляем локальный список вакансий
+      // Update local list of vacancies
       setVacancies((prev) => [...prev, response.data]);
-      setShowForm(false); // Скрываем форму
+      setShowForm(false); // Hide the form
       setFormData({
         title: '',
         description: '',
@@ -63,130 +63,120 @@ const HomePage = () => {
         tasks: '',
         offers: '',
         salary: '',
-        vacancyId: '4',
-      }); // Очищаем форму
+        vacancyId: '',
+      }); // Clear the form
     } catch (error) {
       console.error('Error creating vacancy:', error);
       alert('Failed to create vacancy. Please try again.');
     }
   };
-  
 
   return (
     <div>
-      <h1>HeadHunter 0.1</h1>
-      <p>Your platform for job opportunities</p>
-      <div style={styles.buttonContainer}>
-        <Link to="/auth/login">
-          <button style={styles.button}>Login</button>
-        </Link>
-        <Link to="/auth/register">
-          <button style={styles.button}>Register</button>
-        </Link>
-        <button style={styles.button} onClick={() => setShowForm(!showForm)}>
-          {showForm ? 'Cancel' : 'Create Vacancy'}
-        </button>
-      </div>
+      {/* Top Header */}
+      <header className="header">
+        <h1 className="logo">HeadHunter 0.1</h1>
+        <div className="button-container">
+          <Link to="/auth/login">
+            <button className="button">Login</button>
+          </Link>
+          <Link to="/auth/register">
+            <button className="button">Register</button>
+          </Link>
+          <button className="button" onClick={() => setShowForm(!showForm)}>
+            {showForm ? 'Cancel' : 'Create Vacancy'}
+          </button>
+        </div>
+      </header>
 
+      {/* Form for creating vacancy */}
       {showForm && (
-        <div style={styles.formContainer}>
+        <div className="form-container">
           <h2>Create New Vacancy</h2>
           <input
-    type="text"
-    name="title"
-    value={formData.title}
-    onChange={handleInputChange}
-    placeholder="Title"
-  />
-  <textarea
-    name="description"
-    value={formData.description}
-    onChange={handleInputChange}
-    placeholder="Description"
-  />
-  <input
-    type="text"
-    name="expectations"
-    value={formData.expectations}
-    onChange={handleInputChange}
-    placeholder="Expectations (comma separated)"
-  />
-  <input
-    type="text"
-    name="tasks"
-    value={formData.tasks}
-    onChange={handleInputChange}
-    placeholder="Tasks (comma separated)"
-  />
-  <input
-    type="text"
-    name="offers"
-    value={formData.offers}
-    onChange={handleInputChange}
-    placeholder="Offers (comma separated)"
-  />
-  <input
-    type="number"
-    name="salary"
-    value={formData.salary}
-    onChange={handleInputChange}
-    placeholder="Salary"
-  />
-  <input
-    type="number"
-    name="vacancyId"
-    value={formData.vacancyId}
-    onChange={handleInputChange}
-    placeholder="Vacancy ID"
-  />
-  <button type="submit" onClick={handleCreate}>Create Vacancy</button>
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleInputChange}
+            placeholder="Title"
+            className="input"
+          />
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            placeholder="Description"
+            className="input"
+          />
+          <input
+            type="text"
+            name="expectations"
+            value={formData.expectations}
+            onChange={handleInputChange}
+            placeholder="Expectations (comma separated)"
+            className="input"
+          />
+          <input
+            type="text"
+            name="tasks"
+            value={formData.tasks}
+            onChange={handleInputChange}
+            placeholder="Tasks (comma separated)"
+            className="input"
+          />
+          <input
+            type="text"
+            name="offers"
+            value={formData.offers}
+            onChange={handleInputChange}
+            placeholder="Offers (comma separated)"
+            className="input"
+          />
+          <input
+            type="number"
+            name="salary"
+            value={formData.salary}
+            onChange={handleInputChange}
+            placeholder="Salary"
+            className="input"
+          />
+          <input
+            type="number"
+            name="vacancyId"
+            value={formData.vacancyId}
+            onChange={handleInputChange}
+            placeholder="Vacancy ID"
+            className="input"
+          />
+          <button type="submit" onClick={handleCreate} className="button">Create Vacancy</button>
         </div>
       )}
 
+      {/* List of vacancies */}
       <h2>Vacancies</h2>
       {vacancies.length === 0 ? (
         <p>Loading vacancies...</p>
       ) : (
-        <ul>
+        <div className="vacancies-container">
           {vacancies.map((vacancy) => (
-            <li key={vacancy.id}>
+            <div key={vacancy.id} className="vacancy-card">
               <Link to={`/vacancies-info/${vacancy.id}`}>
                 <h3>{vacancy.title}</h3>
                 <p>{vacancy.description}</p>
                 <p>Location: Bishkek</p>
                 <p>Salary: {vacancy.salary}</p>
               </Link>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
+
+      {/* Bottom black header */}
+      <footer className="footer">
+        <p className="footer-text">All rights reserved. HeadHunter 2024</p>
+      </footer>
     </div>
   );
-};
-
-const styles = {
-  buttonContainer: {
-    marginTop: '20px',
-  },
-  button: {
-    padding: '10px 20px',
-    margin: '10px',
-    fontSize: '16px',
-    cursor: 'pointer',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '5px',
-    transition: 'background-color 0.3s',
-  },
-  formContainer: {
-    marginTop: '20px',
-    padding: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '5px',
-    maxWidth: '400px',
-    margin: '0 auto',
-  },
 };
 
 export default HomePage;

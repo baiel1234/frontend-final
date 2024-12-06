@@ -22,7 +22,7 @@ const AuthPage = ({ isLogin }) => {
 
       await axios.post(url, data);
       alert(isLogin ? "Вы успешно вошли!" : "Регистрация успешна!");
-      navigate.push("/"); // Перенаправление на главную страницу
+      navigate("/"); // Перенаправление на главную страницу
     } catch (error) {
       console.error("Ошибка:", error);
     }
@@ -42,6 +42,7 @@ const AuthPage = ({ isLogin }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className="input-field"
           />
         </label>
         <br />
@@ -52,13 +53,14 @@ const AuthPage = ({ isLogin }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="input-field"
           />
         </label>
         <br />
         {!isLogin && (
           <label>
             Роль:
-            <select value={role} onChange={(e) => setRole(Number(e.target.value))}>
+            <select value={role} onChange={(e) => setRole(Number(e.target.value))} className="input-field">
               <option value={1}>Админ</option>
               <option value={2}>Работодатель</option>
               <option value={3}>Искатель работы</option>
@@ -66,8 +68,12 @@ const AuthPage = ({ isLogin }) => {
           </label>
         )}
         <br />
-        <button type="submit">{isLogin ? "Войти" : "Зарегистрироваться"}</button>
+        <button type="submit" className="submit-button">{isLogin ? "Войти" : "Зарегистрироваться"}</button>
       </form>
+
+      <footer className="auth-footer">
+        <p>&copy; All rights reserved. HeadHunter 2024</p>
+      </footer>
     </div>
   );
 };

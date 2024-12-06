@@ -1,44 +1,156 @@
+/* Общие стили для страницы */
 .vacancy-page {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .vacancy-header {
-    background-color: #007BFF;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 1.8rem;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  .vacancy-details {
-    padding: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    color: #007BFF;
-  }
-  
-  ul {
-    list-style-type: square;
-    padding-left: 20px;
-  }
-  
-  li {
-    margin-bottom: 8px;
-  }
-  
-  h2, h3 {
-    color: #007BFF;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  padding: 0 20px;
+  background-color: #f4f7fc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  text-align: center;
+  font-size: 24px;
+  color: #666;
+}
+
+/* Стили для хедера */
+.header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+/* Контент вакансии */
+.vacancy-content {
+  flex: 1; /* Этот элемент будет растягиваться, заполняя свободное пространство */
+  padding: 20px;
+  overflow-y: auto; /* Это позволяет контенту прокручиваться, если он слишком длинный */
+}
+
+.vacancy-details {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.vacancy-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.vacancy-description {
+  font-size: 16px;
+  color: #7f8c8d;
+  margin-bottom: 20px;
+}
+
+.vacancy-salary {
+  font-size: 18px;
+  color: #27ae60;
+  margin-bottom: 20px;
+}
+
+.vacancy-salary span {
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 22px;
+  color: #34495e;
+}
+
+p {
+  font-size: 16px;
+  color: #7f8c8d;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.edit-button {
+  background-color: #f39c12;
+  color: white;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #e67e22;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+/* Стили для формы редактирования */
+.vacancy-form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 16px;
+  color: #2c3e50;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.buttons button {
+  width: 100px;
+  margin: 10px 0;
+}
+
+/* Стили для нижнего колонтитула */
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  margin-top: auto; 
+}
+
