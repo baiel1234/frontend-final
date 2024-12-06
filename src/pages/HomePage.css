@@ -1,0 +1,80 @@
+/* Основные стили для страницы */
+.homepage {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .homepage-header {
+    background-color: #007BFF;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .vacancy-list {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .vacancies-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .vacancy-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 320px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .vacancy-card h2 {
+    color: #007BFF;
+  }
+  
+  .vacancy-card p {
+    color: #555;
+  }
+  
+  .vacancy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .details-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .details-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Адаптивные стили для маленьких экранов */
+  @media (max-width: 768px) {
+    .vacancies-container {
+      justify-content: center;
+    }
+  
+    .vacancy-card {
+      max-width: 100%;
+      margin: 10px 0;
+    }
+  }
+
+  
+  
